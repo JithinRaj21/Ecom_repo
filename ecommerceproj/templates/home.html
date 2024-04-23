@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .rating .fa{
+    color:#ff523b;}
+</style>
+
+
+{% if category %}
+<div class="text-center">
+    <p style="font-size:45px;;">Our Products Category</p>
+</div>
+{% endif %}
+<div>
+    {% if category %}
+     <img src="{{category.image.url}}" style="width:1300px;height:800px;">
+</div>
+<div class="text-center">
+    <h1>{{category.name}}</h1>
+    <p>{{category.desc}}</p>
+</div>
+
+{% else %}
+<div>
+    <img src="{% static 'images/e_photo.jpg' %}" alt="wallpaper image" style="width:1600px; height:500px;">
+</div>
+
+<div>
+    <h1 style="text-align:center;color:red;">Explore Our Products Here</h1>
+    <p>Welcome to our E-Shop,We are not just another ecommerce store, our main aim is to bring healthy change in online shopping.Provide best price and perfect product that suits your needs.Discover a seamless shopping experience with secure payment options along-with quality products that meets affordability.Shop now and enhance your life with E-store!</p>
+</div>
+
+<h1 style="text-align:center;">Our Products</h1><br>
+{% endif %}
+
+
+
+<div class="row align-items-center">
+{% for prod in product %}
+    <div class="col-9 col-sm-12 col-md-3">
+        <div class="card text-center" style="width: 10rem;margin-bottom:30px;margin-left:95px;">
+            <a href="{% url 'detail_product' prod.id  %}">
+                <img src="{{prod.image.url}}" class="card-img-top" style="width:150px;height:150px;">
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">{{prod.name}}</h5>
+                <p class="card-text">{{prod.price}}</p>
+                <p class="card-text">{{prod.desc}}</p>
+
+                 <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    {% endfor %}
+
+</div>
+
+
+
+{% endblock %}
